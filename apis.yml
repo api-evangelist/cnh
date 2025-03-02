@@ -5,6 +5,7 @@ apis:
     name: CNH
     tags:
       - Agriculture
+      - Construction
     humanURL: ' https://develop.cnh.com/get-started'
     properties:
       - url: ' https://develop.cnh.com/get-started'
