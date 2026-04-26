@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cnh/main/json-schema/cnh-equipment-schema.json",
+  "title": "CNH FieldOps Equipment",
+  "description": "Equipment record returned by the CNH FieldOps API for agronomic and construction machinery (Case IH, New Holland, STEYR, Case CE, New Holland Construction).",
+  "type": "object",
+  "required": ["vehicleId", "brand", "model"],
+  "properties": {
+    "vehicleId": {
+      "type": "string",
+      "description": "FieldOps-assigned unique identifier for the vehicle."
+    },
+    "brand": {
+      "type": "string",
+      "enum": [
+        "CASE_IH",
+        "NEW_HOLLAND",
+        "STEYR",
+        "CASE_CE",
+        "NEW_HOLLAND_CONSTRUCTION"
+      ],
+      "description": "CNH Industrial brand."
+    },
+    "model": {
+      "type": "string",
+      "description": "Model name as registered with FieldOps."
+    },
+    "serialNumber": {
+      "type": "string",
+      "description": "Manufacturer serial number / VIN-equivalent."
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1980,
+      "maximum": 2100,
+      "description": "Model year."
+    },
+    "vehicleType": {
+      "type": "string",
+      "enum": ["TRACTOR", "COMBINE", "SPRAYER", "CONSTRUCTION"],
+      "description": "Vehicle category."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Friendly display name set by the operator."
+    }
+  }
+}

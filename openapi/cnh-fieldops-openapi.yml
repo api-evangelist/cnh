@@ -1,0 +1,410 @@
+openapi: 3.1.0
+info:
+  title: CNH FieldOps API
+  description: >-
+    The CNH FieldOps API provides programmatic access to agronomic data and
+    vehicle telemetry for both agronomic machinery and construction equipment
+    connected to a FieldOps account. It replaces the previously available Ag
+    Data and CONNECT Machine Data APIs and is offered to integration partners
+    of CNH Industrial brands including Case IH, New Holland, STEYR, Case CE,
+    and New Holland Construction. Vehicle telemetry follows the ISO 15143-3
+    specification and supports two profiles: CP (CAN Parameter) and MH (Machine
+    Health). Authentication uses OAuth 2.0 with refresh and access tokens.
+  version: 1.0.0
+  contact:
+    name: CNH Developer Support
+    url: https://develop.cnh.com/
+  license:
+    name: CNH Industrial Privacy Policy
+    url: https://www.cnhindustrial.com/en-us/privacy/pages/default.aspx
+servers:
+  - url: https://api.fieldops.cnh.com
+    description: CNH FieldOps API
+security:
+  - oauth2: []
+tags:
+  - name: Tokens
+    description: OAuth refresh and access token management.
+  - name: Equipment
+    description: Fleet and equipment details.
+  - name: Vehicle Telemetry
+    description: ISO 15143-3 vehicle telemetry, fault codes, and metrics.
+  - name: Operations
+    description: Operations by vehicle.
+  - name: Prescriptions
+    description: Send prescription Rx files to vehicles or FieldOps.
+  - name: Farm Setup
+    description: Grower, farm, field, and boundary management.
+  - name: Files
+    description: Upload and manage files attached to operations.
+  - name: Webhooks
+    description: Subscribe to FieldOps event notifications.
+paths:
+  /oauth/token:
+    post:
+      operationId: createAccessToken
+      summary: Exchange refresh token for access token
+      description: Exchange a refresh token for a short-lived access token.
+      tags:
+        - Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - refresh_token
+              properties:
+                grant_type:
+                  type: string
+                  enum: [refresh_token]
+                refresh_token:
+                  type: string
+                  description: Long-lived refresh token issued by CNH Developer Portal.
+      responses:
+        '200':
+          description: Token issued.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token: { type: string }
+                  refresh_token: { type: string }
+                  token_type: { type: string }
+                  expires_in: { type: integer }
+        '401':
+          description: Invalid or expired refresh token.
+  /equipment:
+    get:
+      operationId: listEquipment
+      summary: List equipment
+      description: Returns equipment registered to the authenticated user's FieldOps account.
+      tags:
+        - Equipment
+      parameters:
+        - name: brand
+          in: query
+          schema:
+            type: string
+            enum: [CASE_IH, NEW_HOLLAND, STEYR, CASE_CE, NEW_HOLLAND_CONSTRUCTION]
+        - name: vehicleType
+          in: query
+          schema:
+            type: string
+            enum: [TRACTOR, COMBINE, SPRAYER, CONSTRUCTION]
+      responses:
+        '200':
+          description: Equipment list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Equipment'
+        '401': { description: Unauthorized }
+  /equipment/{vehicleId}:
+    get:
+      operationId: getEquipment
+      summary: Get equipment by vehicle ID
+      tags:
+        - Equipment
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Equipment detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Equipment'
+        '404': { description: Not found }
+  /telemetry/{vehicleId}:
+    get:
+      operationId: getVehicleTelemetry
+      summary: Get vehicle telemetry (ISO 15143-3)
+      description: >-
+        Returns telemetry for a single vehicle following ISO 15143-3. Use the
+        `profile` parameter to select CP (CAN Parameter, default) or MH
+        (Machine Health) data. Supply `startDate` and `endDate` (recommended:
+        one-day window) to constrain the response and improve performance.
+      tags:
+        - Vehicle Telemetry
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: profile
+          in: query
+          schema:
+            type: string
+            enum: [CP, MH]
+            default: CP
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Telemetry payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Telemetry'
+        '400': { description: Invalid date range }
+  /telemetry/{vehicleId}/fault-codes:
+    get:
+      operationId: getFaultCodes
+      summary: Get fault codes for a vehicle
+      tags:
+        - Vehicle Telemetry
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Fault codes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code: { type: string }
+                        severity: { type: string }
+                        timestamp: { type: string, format: date-time }
+                        description: { type: string }
+  /metrics/{vehicleId}:
+    get:
+      operationId: getVehicleMetrics
+      summary: Get aggregated metrics for a vehicle
+      description: >-
+        Aggregated daily metrics including operating hours, idle hours, fuel
+        remaining ratio, distance, and peak daily speed.
+      tags:
+        - Vehicle Telemetry
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Metrics payload.
+  /operations/by-vehicle/{vehicleId}:
+    get:
+      operationId: listOperationsByVehicle
+      summary: List operations by vehicle
+      tags:
+        - Operations
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Operations list.
+  /prescriptions:
+    post:
+      operationId: sendPrescription
+      summary: Send prescription Rx file to vehicle or FieldOps
+      tags:
+        - Prescriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - target
+                - prescriptionFileUrl
+              properties:
+                target:
+                  type: string
+                  enum: [VEHICLE, FIELDOPS]
+                vehicleId:
+                  type: string
+                fieldId:
+                  type: string
+                prescriptionFileUrl:
+                  type: string
+                  format: uri
+      responses:
+        '202':
+          description: Prescription accepted for delivery.
+  /growers:
+    get:
+      operationId: listGrowers
+      summary: List growers
+      tags:
+        - Farm Setup
+      responses:
+        '200':
+          description: Growers list.
+  /farms:
+    get:
+      operationId: listFarms
+      summary: List farms
+      tags:
+        - Farm Setup
+      parameters:
+        - name: growerId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Farms list.
+  /fields:
+    get:
+      operationId: listFields
+      summary: List fields
+      tags:
+        - Farm Setup
+      parameters:
+        - name: farmId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Fields list.
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: List webhook subscriptions
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: Webhook list.
+    post:
+      operationId: createWebhook
+      summary: Create webhook subscription
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - url
+                - events
+              properties:
+                url:
+                  type: string
+                  format: uri
+                events:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Webhook created.
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://develop.cnh.com/oauth/authorize
+          tokenUrl: https://develop.cnh.com/oauth/token
+          scopes:
+            telemetry: Access vehicle telemetry data
+            equipment: Access equipment metadata
+            farm: Access farm setup
+            prescriptions: Send prescription Rx files
+            webhooks: Manage webhook subscriptions
+  schemas:
+    Equipment:
+      type: object
+      properties:
+        vehicleId: { type: string }
+        brand: { type: string }
+        model: { type: string }
+        serialNumber: { type: string }
+        year: { type: integer }
+        vehicleType: { type: string }
+    Telemetry:
+      type: object
+      properties:
+        vehicleId: { type: string }
+        profile: { type: string, enum: [CP, MH] }
+        windowStart: { type: string, format: date-time }
+        windowEnd: { type: string, format: date-time }
+        location: { $ref: '#/components/schemas/Location' }
+        operatingHours: { type: number }
+        idleHours: { type: number }
+        fuelRemainingRatio: { type: number }
+        defRemaining: { type: number }
+        peakDailySpeed: { type: number }
+        errorTags: { type: string }
+    Location:
+      type: object
+      properties:
+        latitude: { type: number }
+        longitude: { type: number }
+        altitude: { type: number }
+        gpsFix: { type: boolean }

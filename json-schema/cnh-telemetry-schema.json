@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cnh/main/json-schema/cnh-telemetry-schema.json",
+  "title": "CNH FieldOps Vehicle Telemetry",
+  "description": "ISO 15143-3 vehicle telemetry payload returned by the CNH FieldOps API. Two profiles are supported: CP (CAN Parameter) and MH (Machine Health).",
+  "type": "object",
+  "required": ["vehicleId", "profile"],
+  "properties": {
+    "vehicleId": { "type": "string" },
+    "profile": {
+      "type": "string",
+      "enum": ["CP", "MH"],
+      "description": "CP = CAN Parameter profile (default). MH = Machine Health profile."
+    },
+    "windowStart": { "type": "string", "format": "date-time" },
+    "windowEnd": { "type": "string", "format": "date-time" },
+    "location": {
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "altitude": { "type": "number" },
+        "gpsFix": { "type": "boolean" }
+      }
+    },
+    "operatingHours": {
+      "type": "number",
+      "description": "Engine operating hours over the window."
+    },
+    "idleHours": {
+      "type": "number",
+      "description": "Engine idle hours over the window."
+    },
+    "fuelRemainingRatio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Fraction of tank fuel remaining at end of window."
+    },
+    "defRemaining": {
+      "type": "number",
+      "description": "Diesel Exhaust Fluid remaining (liters)."
+    },
+    "peakDailySpeed": {
+      "type": "number",
+      "description": "Peak ground speed observed during the window (km/h)."
+    },
+    "distance": {
+      "type": "number",
+      "description": "Total distance travelled in the window (km)."
+    },
+    "errorTags": {
+      "type": "string",
+      "description": "Comma-separated error/quality tags (e.g. NO_GPS_FIX, NULL_DATA, UNREALISTIC_VALUE)."
+    },
+    "faultCodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "severity": {
+            "type": "string",
+            "enum": ["INFO", "WARNING", "FAULT"]
+          },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}

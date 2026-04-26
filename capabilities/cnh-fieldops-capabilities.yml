@@ -1,0 +1,136 @@
+# Naftiko capabilities profile for CNH FieldOps API.
+# FieldOps replaces the legacy CNH Ag Data and CONNECT Machine Data APIs and
+# provides ISO 15143-3 vehicle telemetry plus farm setup, operations,
+# prescriptions, and webhook subscriptions across Case IH, New Holland,
+# STEYR, Case CE, and New Holland Construction.
+provider: cnh
+name: CNH FieldOps
+description: >-
+  CNH FieldOps API: ISO 15143-3 vehicle telemetry, equipment management,
+  farm/grower hierarchy, operations history, prescription Rx delivery,
+  and webhook subscriptions across CNH Industrial agricultural and
+  construction brands.
+capabilities:
+  - id: cnh.tokens.access
+    name: Exchange refresh for access token
+    description: Trade a long-lived refresh token for a short-lived access token.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - refresh_token
+      - grant_type
+    outputs:
+      - access_token
+      - expires_in
+
+  - id: cnh.equipment.list
+    name: List equipment
+    description: Enumerate equipment registered to the FieldOps account.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - brand
+      - vehicleType
+    outputs:
+      - items
+
+  - id: cnh.equipment.get
+    name: Get equipment by vehicle ID
+    description: Retrieve detail for a single piece of equipment.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - vehicleId
+    outputs:
+      - equipment
+
+  - id: cnh.telemetry.get
+    name: Get vehicle telemetry
+    description: Get ISO 15143-3 telemetry for a vehicle in a date window (CP or MH profile).
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - vehicleId
+      - profile
+      - startDate
+      - endDate
+    outputs:
+      - telemetry
+
+  - id: cnh.telemetry.fault-codes
+    name: Get vehicle fault codes
+    description: List fault codes raised by a vehicle within a window.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - vehicleId
+      - startDate
+      - endDate
+    outputs:
+      - faultCodes
+
+  - id: cnh.telemetry.metrics
+    name: Get aggregated daily metrics
+    description: Daily metrics for a vehicle (operating hours, idle hours, fuel ratio, distance, peak speed).
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - vehicleId
+      - startDate
+      - endDate
+    outputs:
+      - metrics
+
+  - id: cnh.operations.by-vehicle
+    name: List operations by vehicle
+    description: List recorded field operations for a single vehicle.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - vehicleId
+      - startDate
+      - endDate
+    outputs:
+      - operations
+
+  - id: cnh.prescriptions.send
+    name: Send prescription Rx
+    description: Push a prescription Rx file to a vehicle or to a FieldOps field.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - target
+      - vehicleId
+      - fieldId
+      - prescriptionFileUrl
+    outputs:
+      - jobId
+      - status
+
+  - id: cnh.farm.growers
+    name: List growers
+    description: Enumerate growers in the FieldOps hierarchy.
+    api: cnh:cnh-fieldops-api
+    outputs:
+      - growers
+
+  - id: cnh.farm.farms
+    name: List farms
+    description: Enumerate farms for a grower.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - growerId
+    outputs:
+      - farms
+
+  - id: cnh.farm.fields
+    name: List fields
+    description: Enumerate fields for a farm.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - farmId
+    outputs:
+      - fields
+
+  - id: cnh.webhooks.create
+    name: Create webhook subscription
+    description: Subscribe to FieldOps event notifications via webhook.
+    api: cnh:cnh-fieldops-api
+    inputs:
+      - url
+      - events
+    outputs:
+      - id
+      - status
