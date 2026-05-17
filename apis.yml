@@ -1,7 +1,7 @@
 aid: cnh
 url: https://raw.githubusercontent.com/api-evangelist/cnh/refs/heads/main/apis.yml
 name: CNH
-x-type: company
+kind: company
 tags:
   - Agriculture
   - Construction
