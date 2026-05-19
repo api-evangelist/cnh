@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CNH FieldOps API — Webhooks
+  description: 'CNH FieldOps API — Webhooks. 2 operations. Lead operation: List webhook subscriptions. Self-contained Naftiko
+    capability covering one Cnh business surface.'
+  tags:
+  - Cnh
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CNH_API_KEY: CNH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fieldops-webhooks
+    baseUri: https://api.fieldops.cnh.com
+    description: CNH FieldOps API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: List webhook subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwebhook
+        method: POST
+        description: Create webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CNH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fieldops-webhooks-rest
+    port: 8080
+    description: REST adapter for CNH FieldOps API — Webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/webhooks
+      name: webhooks
+      description: REST surface for webhooks.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: List webhook subscriptions
+        call: fieldops-webhooks.listwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Create webhook subscription
+        call: fieldops-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fieldops-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CNH FieldOps API — Webhooks. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-webhook-subscriptions
+      description: List webhook subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fieldops-webhooks.listwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-webhook-subscription
+      description: Create webhook subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fieldops-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

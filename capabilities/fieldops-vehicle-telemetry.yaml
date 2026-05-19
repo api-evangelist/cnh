@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CNH FieldOps API — Vehicle Telemetry
+  description: 'CNH FieldOps API — Vehicle Telemetry. 3 operations. Lead operation: Get aggregated metrics for a vehicle.
+    Self-contained Naftiko capability covering one Cnh business surface.'
+  tags:
+  - Cnh
+  - Vehicle Telemetry
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CNH_API_KEY: CNH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fieldops-vehicle-telemetry
+    baseUri: https://api.fieldops.cnh.com
+    description: CNH FieldOps API — Vehicle Telemetry business capability. Self-contained, no shared references.
+    resources:
+    - name: metrics-vehicleId
+      path: /metrics/{vehicleId}
+      operations:
+      - name: getvehiclemetrics
+        method: GET
+        description: Get aggregated metrics for a vehicle
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vehicleId
+          in: path
+          type: string
+          required: true
+        - name: startDate
+          in: query
+          type: string
+          required: true
+        - name: endDate
+          in: query
+          type: string
+          required: true
+    - name: telemetry-vehicleId
+      path: /telemetry/{vehicleId}
+      operations:
+      - name: getvehicletelemetry
+        method: GET
+        description: Get vehicle telemetry (ISO 15143-3)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vehicleId
+          in: path
+          type: string
+          required: true
+        - name: profile
+          in: query
+          type: string
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+    - name: telemetry-vehicleId-fault-codes
+      path: /telemetry/{vehicleId}/fault-codes
+      operations:
+      - name: getfaultcodes
+        method: GET
+        description: Get fault codes for a vehicle
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vehicleId
+          in: path
+          type: string
+          required: true
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.CNH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fieldops-vehicle-telemetry-rest
+    port: 8080
+    description: REST adapter for CNH FieldOps API — Vehicle Telemetry. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/metrics/{vehicleid}
+      name: metrics-vehicleid
+      description: REST surface for metrics-vehicleId.
+      operations:
+      - method: GET
+        name: getvehiclemetrics
+        description: Get aggregated metrics for a vehicle
+        call: fieldops-vehicle-telemetry.getvehiclemetrics
+        with:
+          vehicleId: rest.vehicleId
+          startDate: rest.startDate
+          endDate: rest.endDate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/telemetry/{vehicleid}
+      name: telemetry-vehicleid
+      description: REST surface for telemetry-vehicleId.
+      operations:
+      - method: GET
+        name: getvehicletelemetry
+        description: Get vehicle telemetry (ISO 15143-3)
+        call: fieldops-vehicle-telemetry.getvehicletelemetry
+        with:
+          vehicleId: rest.vehicleId
+          profile: rest.profile
+          startDate: rest.startDate
+          endDate: rest.endDate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/telemetry/{vehicleid}/fault-codes
+      name: telemetry-vehicleid-fault-codes
+      description: REST surface for telemetry-vehicleId-fault-codes.
+      operations:
+      - method: GET
+        name: getfaultcodes
+        description: Get fault codes for a vehicle
+        call: fieldops-vehicle-telemetry.getfaultcodes
+        with:
+          vehicleId: rest.vehicleId
+          startDate: rest.startDate
+          endDate: rest.endDate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fieldops-vehicle-telemetry-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CNH FieldOps API — Vehicle Telemetry. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-aggregated-metrics-vehicle
+      description: Get aggregated metrics for a vehicle
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fieldops-vehicle-telemetry.getvehiclemetrics
+      with:
+        vehicleId: tools.vehicleId
+        startDate: tools.startDate
+        endDate: tools.endDate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-vehicle-telemetry-iso-15143
+      description: Get vehicle telemetry (ISO 15143-3)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fieldops-vehicle-telemetry.getvehicletelemetry
+      with:
+        vehicleId: tools.vehicleId
+        profile: tools.profile
+        startDate: tools.startDate
+        endDate: tools.endDate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-fault-codes-vehicle
+      description: Get fault codes for a vehicle
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fieldops-vehicle-telemetry.getfaultcodes
+      with:
+        vehicleId: tools.vehicleId
+        startDate: tools.startDate
+        endDate: tools.endDate
+      outputParameters:
+      - type: object
+        mapping: $.
