@@ -9,7 +9,7 @@ tags:
   - Equipment
   - FieldOps
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-19'
@@ -30,7 +30,7 @@ apis:
       - OAuth2
       - Telemetry
       - Vehicles
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://develop.cnh.com/api-guides/fieldops-api
     baseURL: https://api.fieldops.cnh.com
     properties:
@@ -96,7 +96,7 @@ apis:
       - Developer Portal
       - Documentation
       - OAuth2
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://develop.cnh.com/
     properties:
       - url: https://develop.cnh.com/
