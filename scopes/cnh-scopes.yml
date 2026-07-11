@@ -1,0 +1,41 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cnh-fieldops-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/cnh-fieldops-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://develop.cnh.com/oauth/authorize
+    tokenUrl: https://develop.cnh.com/oauth/token
+scopes:
+- scope: equipment
+  description: Access equipment metadata
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cnh-fieldops-openapi.yml
+- scope: farm
+  description: Access farm setup
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cnh-fieldops-openapi.yml
+- scope: prescriptions
+  description: Send prescription Rx files
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cnh-fieldops-openapi.yml
+- scope: telemetry
+  description: Access vehicle telemetry data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cnh-fieldops-openapi.yml
+- scope: webhooks
+  description: Manage webhook subscriptions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cnh-fieldops-openapi.yml

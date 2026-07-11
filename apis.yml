@@ -108,6 +108,8 @@ apis:
       collections, and curated SwaggerHub documentation for FieldOps and related CNH APIs. Developers register for
       credentials, obtain refresh tokens, and progress from sandbox to live data through the portal.
 common:
+  - type: OAuthScopes
+    url: scopes/cnh-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/cnh
   - url: https://www.cnhindustrial.com/
