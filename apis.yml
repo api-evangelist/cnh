@@ -108,6 +108,10 @@ apis:
       collections, and curated SwaggerHub documentation for FieldOps and related CNH APIs. Developers register for
       credentials, obtain refresh tokens, and progress from sandbox to live data through the portal.
 common:
+  - type: DomainSecurity
+    url: security/cnh-domain-security.yml
+  - type: Authentication
+    url: authentication/cnh-authentication.yml
   - type: OAuthScopes
     url: scopes/cnh-scopes.yml
   - type: LinkedIn
