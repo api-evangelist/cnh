@@ -108,6 +108,8 @@ apis:
       collections, and curated SwaggerHub documentation for FieldOps and related CNH APIs. Developers register for
       credentials, obtain refresh tokens, and progress from sandbox to live data through the portal.
 common:
+  - type: AgenticAccess
+    url: agentic-access/cnh-agentic-access.yml
   - type: DomainSecurity
     url: security/cnh-domain-security.yml
   - type: Authentication
