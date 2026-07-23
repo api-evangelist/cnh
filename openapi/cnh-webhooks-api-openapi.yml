@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: CNH FieldOps Equipment Webhooks API
+  description: 'The CNH FieldOps API provides programmatic access to agronomic data and vehicle telemetry for both agronomic machinery and construction equipment connected to a FieldOps account. It replaces the previously available Ag Data and CONNECT Machine Data APIs and is offered to integration partners of CNH Industrial brands including Case IH, New Holland, STEYR, Case CE, and New Holland Construction. Vehicle telemetry follows the ISO 15143-3 specification and supports two profiles: CP (CAN Parameter) and MH (Machine Health). Authentication uses OAuth 2.0 with refresh and access tokens.'
+  version: 1.0.0
+  contact:
+    name: CNH Developer Support
+    url: https://develop.cnh.com/
+  license:
+    name: CNH Industrial Privacy Policy
+    url: https://www.cnhindustrial.com/en-us/privacy/pages/default.aspx
+servers:
+- url: https://api.fieldops.cnh.com
+  description: CNH FieldOps API
+security:
+- oauth2: []
+tags:
+- name: Webhooks
+  description: Subscribe to FieldOps event notifications.
+paths:
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: List webhook subscriptions
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: Webhook list.
+    post:
+      operationId: createWebhook
+      summary: Create webhook subscription
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              - events
+              properties:
+                url:
+                  type: string
+                  format: uri
+                events:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Webhook created.
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://develop.cnh.com/oauth/authorize
+          tokenUrl: https://develop.cnh.com/oauth/token
+          scopes:
+            telemetry: Access vehicle telemetry data
+            equipment: Access equipment metadata
+            farm: Access farm setup
+            prescriptions: Send prescription Rx files
+            webhooks: Manage webhook subscriptions
