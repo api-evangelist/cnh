@@ -9,7 +9,20 @@ tags:
   - Equipment
   - FieldOps
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cnh.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-19'
@@ -21,92 +34,206 @@ description: >-
   telemetry, equipment management, farm/grower hierarchy, operations, prescription Rx delivery, and webhook
   subscriptions across both agronomic machinery and construction equipment.
 apis:
-  - aid: cnh:cnh-fieldops-api
-    name: CNH FieldOps API
-    tags:
-      - Agriculture
-      - Construction
-      - ISO 15143-3
-      - OAuth2
-      - Telemetry
-      - Vehicles
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://develop.cnh.com/api-guides/fieldops-api
-    baseURL: https://api.fieldops.cnh.com
-    properties:
-      - url: https://develop.cnh.com/get-started
-        type: GettingStarted
-      - url: https://develop.cnh.com/api-guides
-        type: Documentation
-      - url: https://develop.cnh.com/api-guides/fieldops-api
-        type: Reference
-      - url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
-        type: Reference
-      - url: openapi/cnh-fieldops-openapi.yml
-        type: OpenAPI
-      - url: json-schema/cnh-equipment-schema.json
-        type: JSONSchema
-      - url: json-schema/cnh-telemetry-schema.json
-        type: JSONSchema
-      - url: json-ld/cnh-context.jsonld
-        type: JSONLDContext
-      - url: rules/cnh-rules.yml
-        type: SpectralRuleset
-    description: >-
-      The CNH FieldOps API replaces the previously available CNH Ag Data and CONNECT Machine Data APIs and provides a
-      unified, OAuth 2.0 secured REST API for both agronomic machinery and construction equipment connected to a
-      FieldOps account. Vehicle telemetry follows the ISO 15143-3 specification with two profiles - CP (CAN Parameter,
-      default) and MH (Machine Health) - and supports time-series data such as locations, operating hours, idle hours,
-      fuel and DEF remaining, peak speed, distance, fault codes, and engine condition. Additional endpoint groups cover
-      Equipment, Operations By Vehicle, Prescriptions (send Rx files), Farm Setup (Grower / Farm / Field / Boundary),
-      Files, and Webhooks.
-    x-features:
-      - name: ISO 15143-3 Telemetry
-        description: Standards-based vehicle telemetry across CNH brands and equipment classes.
-      - name: CP and MH Profiles
-        description: CAN Parameter (default) and Machine Health telemetry profiles.
-      - name: Fault Codes
-        description: Fault, caution, and engine-condition codes per vehicle.
-      - name: Aggregated Metrics
-        description: Daily metrics including operating hours, idle hours, fuel ratio, distance, and peak speed.
-      - name: Prescription Rx Delivery
-        description: Push prescription files directly to a vehicle or FieldOps field.
-      - name: Farm Hierarchy
-        description: Grower / Farm / Field / Boundary management.
-      - name: Operations by Vehicle
-        description: Recorded field operations per vehicle.
-      - name: Webhooks
-        description: Subscribe to FieldOps event notifications.
-      - name: OAuth 2.0
-        description: Refresh and access token authentication via develop.cnh.com.
-    x-useCases:
-      - name: Fleet Telematics
-        description: Power third-party fleet-management systems with CNH equipment telemetry.
-      - name: Predictive Maintenance
-        description: Use Machine Health telemetry and fault codes to anticipate maintenance.
-      - name: Precision Agriculture
-        description: Push prescription Rx files into the workflow for variable-rate application.
-      - name: Farm Management Systems
-        description: Hydrate FMS dashboards with grower / farm / field hierarchies and operations.
-      - name: Construction Equipment Tracking
-        description: Track Case CE and New Holland Construction equipment via standardized ISO telematics.
-  - aid: cnh:cnh-developer-portal
-    name: CNH Developer Portal
-    tags:
-      - Developer Portal
-      - Documentation
-      - OAuth2
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://develop.cnh.com/
-    properties:
-      - url: https://develop.cnh.com/
-        type: Portal
-      - url: https://develop.cnh.com/get-started
-        type: GettingStarted
-    description: >-
-      The CNH Developer Portal at develop.cnh.com hosts onboarding, authentication guidance, API guides, Postman
-      collections, and curated SwaggerHub documentation for FieldOps and related CNH APIs. Developers register for
-      credentials, obtain refresh tokens, and progress from sandbox to live data through the portal.
+- aid: cnh:cnh-developer-portal
+  name: CNH Developer Portal
+  tags:
+  - Developer Portal
+  - Documentation
+  - OAuth2
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://develop.cnh.com/
+  properties:
+  - url: https://develop.cnh.com/
+    type: Portal
+  - url: https://develop.cnh.com/get-started
+    type: GettingStarted
+  description: >-
+    The CNH Developer Portal at develop.cnh.com hosts onboarding, authentication guidance, API guides,
+    Postman collections, and curated SwaggerHub documentation for FieldOps and related CNH APIs. Developers
+    register for credentials, obtain refresh tokens, and progress from sandbox to live data through the
+    portal.
+- aid: cnh:cnh-equipment-api
+  name: CNH Equipment API
+  description: Fleet and equipment details.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Equipment
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-equipment-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
+- aid: cnh:cnh-farm-setup-api
+  name: CNH Farm Setup API
+  description: Grower, farm, field, and boundary management.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Farm Setup
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-farm-setup-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
+- aid: cnh:cnh-operations-api
+  name: CNH Operations API
+  description: Operations by vehicle.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-operations-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
+- aid: cnh:cnh-prescriptions-api
+  name: CNH Prescriptions API
+  description: Send prescription Rx files to vehicles or FieldOps.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Prescriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-prescriptions-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
+- aid: cnh:cnh-tokens-api
+  name: CNH Tokens API
+  description: OAuth refresh and access token management.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-tokens-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
+- aid: cnh:cnh-vehicle-telemetry-api
+  name: CNH Vehicle Telemetry API
+  description: ISO 15143-3 vehicle telemetry, fault codes, and metrics.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Vehicle Telemetry
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-vehicle-telemetry-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
+- aid: cnh:cnh-webhooks-api
+  name: CNH Webhooks API
+  description: Subscribe to FieldOps event notifications.
+  humanURL: https://develop.cnh.com/api-guides/fieldops-api
+  baseURL: https://api.fieldops.cnh.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/cnh-webhooks-api-openapi.yml
+  - type: GettingStarted
+    url: https://develop.cnh.com/get-started
+  - type: Documentation
+    url: https://develop.cnh.com/api-guides
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api
+  - type: Reference
+    url: https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry
+  - type: JSONSchema
+    url: json-schema/cnh-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/cnh-telemetry-schema.json
+  - type: JSONLDContext
+    url: json-ld/cnh-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cnh-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/cnh-agentic-access.yml
