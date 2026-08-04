@@ -1,0 +1,26 @@
+{
+  "provider": "cnh",
+  "sources": [
+    "cnh-equipment-api-openapi.yml",
+    "cnh-farm-setup-api-openapi.yml",
+    "cnh-operations-api-openapi.yml",
+    "cnh-prescriptions-api-openapi.yml",
+    "cnh-tokens-api-openapi.yml",
+    "cnh-vehicle-telemetry-api-openapi.yml",
+    "cnh-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "cnh-equipment-api-openapi.yml",
+    "cnh-farm-setup-api-openapi.yml",
+    "cnh-operations-api-openapi.yml",
+    "cnh-prescriptions-api-openapi.yml",
+    "cnh-tokens-api-openapi.yml",
+    "cnh-vehicle-telemetry-api-openapi.yml",
+    "cnh-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
