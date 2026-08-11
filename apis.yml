@@ -253,7 +253,7 @@ common:
     type: GettingStarted
   - url: https://develop.cnh.com/api-guides
     type: Documentation
-  - url: openapi/cnh-fieldops-openapi.yml
+  - url: openapi/_original/cnh-fieldops-openapi.yml
     type: OpenAPI
   - url: json-schema/cnh-equipment-schema.json
     type: JSONSchema
