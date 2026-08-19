@@ -26,7 +26,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cnh.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: >-
   CNH Industrial is a global leader in the manufacturing and distribution of agricultural and construction equipment,
   with brands including Case IH, New Holland, STEYR, Case CE, and New Holland Construction. Through develop.cnh.com CNH
