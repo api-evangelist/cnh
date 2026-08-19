@@ -1,0 +1,340 @@
+{
+  "item": [
+    {
+      "id": "d5eed0a5-3eac-46ec-9b91-db87dc58a21e",
+      "name": "Equipment",
+      "description": {
+        "content": "Fleet and equipment details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "579aafd5-af6d-4f6d-ab88-f474458ed9d8",
+          "name": "List equipment",
+          "request": {
+            "name": "List equipment",
+            "description": {
+              "content": "Returns equipment registered to the authenticated user's FieldOps account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "equipment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab147428-379b-45cd-98d5-4d2729793c20",
+              "name": "Equipment list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "equipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"vehicleId\": \"string\",\n      \"brand\": \"string\",\n      \"model\": \"string\",\n      \"serialNumber\": \"string\",\n      \"year\": 7937,\n      \"vehicleType\": \"string\"\n    },\n    {\n      \"vehicleId\": \"string\",\n      \"brand\": \"string\",\n      \"model\": \"string\",\n      \"serialNumber\": \"string\",\n      \"year\": 3875,\n      \"vehicleType\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa8a9528-4c3d-4b44-ae8a-e77da7cbdca5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "equipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "992243c6-3eac-4736-bcd7-630f79e00300",
+          "name": "Get equipment by vehicle ID",
+          "request": {
+            "name": "Get equipment by vehicle ID",
+            "description": {},
+            "url": {
+              "path": [
+                "equipment",
+                ":vehicleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vehicleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7406252-dcdb-4235-9ea3-4bb1d38fc721",
+              "name": "Equipment detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "equipment",
+                    ":vehicleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vehicleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vehicleId\": \"string\",\n  \"brand\": \"string\",\n  \"model\": \"string\",\n  \"serialNumber\": \"string\",\n  \"year\": 7738,\n  \"vehicleType\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00fa039a-cc65-48ec-a9f4-8487d20467b0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "equipment",
+                    ":vehicleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vehicleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fieldops.cnh.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "telemetry equipment farm prescriptions webhooks"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://develop.cnh.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://develop.cnh.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ee439317-9487-4a85-8b69-5c87e35cd37d",
+    "name": "CNH FieldOps Equipment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CNH FieldOps API provides programmatic access to agronomic data and vehicle telemetry for both agronomic machinery and construction equipment connected to a FieldOps account. It replaces the previously available Ag Data and CONNECT Machine Data APIs and is offered to integration partners of CNH Industrial brands including Case IH, New Holland, STEYR, Case CE, and New Holland Construction. Vehicle telemetry follows the ISO 15143-3 specification and supports two profiles: CP (CAN Parameter) and MH (Machine Health). Authentication uses OAuth 2.0 with refresh and access tokens.\n\nContact Support:\n Name: CNH Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "f06b5c5d-8f8c-4364-a1c7-ffa4508f67b3",
+      "name": "Prescriptions",
+      "description": {
+        "content": "Send prescription Rx files to vehicles or FieldOps.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "439b9a27-08c0-46e1-91df-472183ea6ae2",
+          "name": "Send prescription Rx file to vehicle or FieldOps",
+          "request": {
+            "name": "Send prescription Rx file to vehicle or FieldOps",
+            "description": {},
+            "url": {
+              "path": [
+                "prescriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"<string>\",\n  \"prescriptionFileUrl\": \"<uri>\",\n  \"vehicleId\": \"<string>\",\n  \"fieldId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d7fb8a4-8f02-425d-93f3-2e13bf9cbda2",
+              "name": "Prescription accepted for delivery.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prescriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target\": \"<string>\",\n  \"prescriptionFileUrl\": \"<uri>\",\n  \"vehicleId\": \"<string>\",\n  \"fieldId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fieldops.cnh.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "telemetry equipment farm prescriptions webhooks"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://develop.cnh.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://develop.cnh.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ccc443c7-94d0-4a34-901d-6b050711759e",
+    "name": "CNH FieldOps Equipment Prescriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CNH FieldOps API provides programmatic access to agronomic data and vehicle telemetry for both agronomic machinery and construction equipment connected to a FieldOps account. It replaces the previously available Ag Data and CONNECT Machine Data APIs and is offered to integration partners of CNH Industrial brands including Case IH, New Holland, STEYR, Case CE, and New Holland Construction. Vehicle telemetry follows the ISO 15143-3 specification and supports two profiles: CP (CAN Parameter) and MH (Machine Health). Authentication uses OAuth 2.0 with refresh and access tokens.\n\nContact Support:\n Name: CNH Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

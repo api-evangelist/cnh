@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CNH FieldOps Equipment Farm Setup API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://develop.cnh.com/oauth/authorize",
+      "accessTokenUrl": "https://develop.cnh.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Farm Setup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List growers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fieldops.cnh.com/growers"
+          },
+          "docs": "List growers"
+        },
+        {
+          "info": {
+            "name": "List farms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fieldops.cnh.com/farms",
+            "params": [
+              {
+                "name": "growerId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List farms"
+        },
+        {
+          "info": {
+            "name": "List fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fieldops.cnh.com/fields",
+            "params": [
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List fields"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

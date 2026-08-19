@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CNH FieldOps Equipment API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://develop.cnh.com/oauth/authorize",
+      "accessTokenUrl": "https://develop.cnh.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Equipment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List equipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fieldops.cnh.com/equipment",
+            "params": [
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "vehicleType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns equipment registered to the authenticated user's FieldOps account."
+        },
+        {
+          "info": {
+            "name": "Get equipment by vehicle ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fieldops.cnh.com/equipment/:vehicleId",
+            "params": [
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get equipment by vehicle ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
