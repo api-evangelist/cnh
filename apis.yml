@@ -39,6 +39,10 @@ apis:
   tags:
   - Developer Portal
   - Documentation
+  - Authentication
+  tags_raw:
+  - Developer Portal
+  - Documentation
   - OAuth2
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://develop.cnh.com/
@@ -109,7 +113,8 @@ apis:
   description: Operations by vehicle.
   humanURL: https://develop.cnh.com/api-guides/fieldops-api
   baseURL: https://api.fieldops.cnh.com
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
@@ -214,6 +219,8 @@ apis:
   humanURL: https://develop.cnh.com/api-guides/fieldops-api
   baseURL: https://api.fieldops.cnh.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
