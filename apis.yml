@@ -253,6 +253,9 @@ apis:
   - type: SpectralRuleset
     url: rules/cnh-rules.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/cnh-capability-edges.yml
+    name: CNH Business Capability Map
   - type: AgenticAccess
     url: agentic-access/cnh-agentic-access.yml
   - type: DomainSecurity
