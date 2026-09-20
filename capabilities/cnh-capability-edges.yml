@@ -11,8 +11,31 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 3
 edges:
+- tag: Equipment
+  spec_file: cnh-equipment-api-openapi.yml
+  capability_id: BC-3540.30
+  capability_id_l1: BC-3540
+  capability_name: Farm Equipment Management
+  confidence: 0.8
+  evidence: GET /equipment  listEquipment  List equipment; 'vehicle telemetry for both agronomic machinery
+    and construction equipment connected to a FieldOps account'
+  reason: Inventory and retrieval of connected agricultural machines with ISO 15143-3 telemetry maps to
+    Farm Equipment Management (equipment inventory, machinery telemetry). Construction-equipment coverage
+    adds slight ambiguity.
+  recovered_from: vertical-agriculture-food-production-edges.json
+- tag: Prescriptions
+  spec_file: cnh-prescriptions-api-openapi.yml
+  capability_id: BC-3530.20
+  capability_id_l1: BC-3530
+  capability_name: Nutrient Management Planning
+  confidence: 0.7
+  evidence: POST /prescriptions  sendPrescription  Send prescription Rx file to vehicle or FieldOps
+  reason: Agronomic prescription (Rx) files are variable-rate application prescriptions sent to machinery;
+    this matches nutrient/application prescription generation and delivery. Some ambiguity between nutrient
+    management planning and crop protection planning, so confidence moderate.
+  recovered_from: vertical-agriculture-food-production-edges.json
 - tag: Vehicle Telemetry
   spec_file: cnh-vehicle-telemetry-api-openapi.yml
   capability_id: BC-3460.10
