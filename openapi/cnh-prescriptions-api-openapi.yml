@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CNH FieldOps Equipment Prescriptions API
-  description: 'The CNH FieldOps API provides programmatic access to agronomic data and vehicle telemetry for both agronomic machinery and construction equipment connected to a FieldOps account. It replaces the previously available Ag Data and CONNECT Machine Data APIs and is offered to integration partners of CNH Industrial brands including Case IH, New Holland, STEYR, Case CE, and New Holland Construction. Vehicle telemetry follows the ISO 15143-3 specification and supports two profiles: CP (CAN Parameter) and MH (Machine Health). Authentication uses OAuth 2.0 with refresh and access tokens.'
+  title: CNH FieldOps Prescriptions API
+  description: The CNH FieldOps API provides programmatic access to agronomic data and vehicle telemetry for both agronomic machinery and construction equipment connected to a FieldOps account.
   version: 1.0.0
   contact:
     name: CNH Developer Support

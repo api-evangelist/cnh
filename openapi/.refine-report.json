@@ -1,13 +1,7 @@
 {
   "provider": "cnh",
   "sources": [
-    "cnh-equipment-api-openapi.yml",
-    "cnh-farm-setup-api-openapi.yml",
-    "cnh-operations-api-openapi.yml",
-    "cnh-prescriptions-api-openapi.yml",
-    "cnh-tokens-api-openapi.yml",
-    "cnh-vehicle-telemetry-api-openapi.yml",
-    "cnh-webhooks-api-openapi.yml"
+    "_original/cnh-fieldops-openapi.yml"
   ],
   "outputs": [
     "cnh-equipment-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cnh-fieldops-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cnh-equipment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cnh-farm-setup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cnh-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cnh-prescriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cnh-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cnh-vehicle-telemetry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cnh-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
