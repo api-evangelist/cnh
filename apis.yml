@@ -2,6 +2,10 @@ aid: cnh
 url: https://raw.githubusercontent.com/api-evangelist/cnh/refs/heads/main/apis.yml
 name: CNH
 kind: company
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
+x-docs-hosting: azure-static
 tags:
   - Agriculture
   - Construction
