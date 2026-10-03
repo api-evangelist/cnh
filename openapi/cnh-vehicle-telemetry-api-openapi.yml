@@ -132,17 +132,6 @@ paths:
           description: Metrics payload.
 components:
   schemas:
-    Location:
-      type: object
-      properties:
-        latitude:
-          type: number
-        longitude:
-          type: number
-        altitude:
-          type: number
-        gpsFix:
-          type: boolean
     Telemetry:
       type: object
       properties:
@@ -173,6 +162,17 @@ components:
           type: number
         errorTags:
           type: string
+    Location:
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+        altitude:
+          type: number
+        gpsFix:
+          type: boolean
   securitySchemes:
     oauth2:
       type: oauth2
