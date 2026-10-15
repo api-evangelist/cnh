@@ -1,0 +1,33 @@
+edges:
+- partner_name: AgGateway (ADAPT / AgGateway standards)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  evidence: https://aggateway.org/AboutUs/Members.aspx
+  category: farm data standards
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: AgGateway member list (aggateway.org/AboutUs/Members.aspx)
+    spec_file: null
+    standard: AgGateway (ADAPT, ISOXML/SPADE/PAIL, CIDX)
+    role: aggateway-member
+    registered_name: CNH Industrial
+    website: http://www.cnhindustrial.com/
+    matched_domain: cnhindustrial.com
+    matched_by: domain
+    signal_note: 'participation only: membership is not conformance'
+    detected_by: sweep-agriculture-food.py
+    detected: '2026-10-15'
+  detected_by: sweep-agriculture-food.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+source:
+- https://aggateway.org/AboutUs/Members.aspx
+- https://agrirouter.com/en/solutions
+checked:
+- https://aggateway.org/AboutUs/Members.aspx
+- https://agrirouter.com/en/solutions
+- https://climate.com/en-us/partners.html
