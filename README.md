@@ -1,4 +1,4 @@
-# CNH (cnh)
+# CNH
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,92 +66,155 @@
 
 CNH Industrial is a global leader in the manufacturing and distribution of agricultural and construction equipment, with brands including Case IH, New Holland, STEYR, Case CE, and New Holland Construction. Through develop.cnh.com CNH operates a developer portal that exposes the FieldOps API - a unified, ISO 15143-3 compliant REST API for vehicle telemetry, equipment management, farm/grower hierarchy, operations, prescription Rx delivery, and webhook subscriptions across both agronomic machinery and construction equipment.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cnh/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cnh/refs/heads/main/apis.yml)
+**Areas:** Agriculture · Construction · Telematics · Equipment · FieldOps
 
-## Scope
+## CNH on APIs.io
 
-- **Type:** Index
-- **Access:** 3rd-Party
+Everything profiled for CNH is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cnh/](https://apis.io/providers/cnh/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Agriculture
-- Construction
-- Telematics
-- Equipment
-- FieldOps
+- [CNH Developer Portal](https://apis.io/apis/cnh/cnh-developer-portal/) — The CNH Developer Portal at develop.cnh.com hosts onboarding, authentication guidance, API guides, Postman collections, and curated SwaggerHub documentation…
+- [CNH Equipment API](https://apis.io/apis/cnh/cnh-equipment-api/) — Fleet and equipment details.
+- [CNH Farm Setup API](https://apis.io/apis/cnh/cnh-farm-setup-api/) — Grower, farm, field, and boundary management.
+- [CNH Operations API](https://apis.io/apis/cnh/cnh-operations-api/) — Operations by vehicle.
+- [CNH Prescriptions API](https://apis.io/apis/cnh/cnh-prescriptions-api/) — Send prescription Rx files to vehicles or FieldOps.
+- [CNH Tokens API](https://apis.io/apis/cnh/cnh-tokens-api/) — OAuth refresh and access token management.
+- [CNH Vehicle Telemetry API](https://apis.io/apis/cnh/cnh-vehicle-telemetry-api/) — ISO 15143-3 vehicle telemetry, fault codes, and metrics.
+- [CNH Webhooks API](https://apis.io/apis/cnh/cnh-webhooks-api/) — Subscribe to FieldOps event notifications.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### CNH FieldOps API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The CNH FieldOps API replaces the previously available CNH Ag Data and CONNECT Machine Data APIs and provides a unified, OAuth 2.0 secured REST API for both agronomic machinery and construction equipment connected to a FieldOps account. Vehicle telemetry follows the ISO 15143-3 specification with two profiles - CP (CAN Parameter, default) and MH (Machine Health) - and supports time-series data such as locations, operating hours, idle hours, fuel and DEF remaining, peak speed, distance, fault codes, and engine condition. Additional endpoint groups cover Equipment, Operations By Vehicle, Prescriptions (send Rx files), Farm Setup (Grower / Farm / Field / Boundary), Files, and Webhooks.
+- [Cnh Agentic Access](https://apis.io/agentic-access/cnh/cnh-agentic-access/)
 
-- **Human URL:** [https://develop.cnh.com/api-guides/fieldops-api](https://develop.cnh.com/api-guides/fieldops-api)
-- **Base URL:** `https://api.fieldops.cnh.com`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Agriculture
-- Construction
-- ISO 15143-3
-- OAuth2
-- Telemetry
-- Vehicles
+- [CNH FieldOps Equipment](https://apis.io/schemas/cnh/cnh-equipment/)
+- [CNH FieldOps Vehicle Telemetry](https://apis.io/schemas/cnh/cnh-telemetry/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Getting Started](https://develop.cnh.com/get-started)
-- [Documentation](https://develop.cnh.com/api-guides)
-- [Reference](https://develop.cnh.com/api-guides/fieldops-api)
-- [Reference](https://develop.cnh.com/api-guides/fieldops-api/vehicle-telemetry)
-- [OpenAPI](openapi/cnh-fieldops-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cnh-fieldops.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cnh-fieldops.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/cnh-equipment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cnh-telemetry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/cnh-context.jsonld)
-- [Spectral Ruleset](rules/cnh-rules.yml)
+Linked-data contexts for the provider's vocabulary.
 
-### CNH Developer Portal
+- [Cnh Context](https://apis.io/jsonld/cnh/cnh-context/)
 
-The CNH Developer Portal at develop.cnh.com hosts onboarding, authentication guidance, API guides, Postman collections, and curated SwaggerHub documentation for FieldOps and related CNH APIs. Developers register for credentials, obtain refresh tokens, and progress from sandbox to live data through the portal.
+#### Collections (8)
 
-- **Human URL:** [https://develop.cnh.com/](https://develop.cnh.com/)
+Postman and Open Collection request collections.
 
-#### Tags
+- [CNH FieldOps Equipment API](https://apis.io/collections/cnh/open-cnh-equipment-api/)
+- [CNH FieldOps Equipment Farm Setup API](https://apis.io/collections/cnh/open-cnh-farm-setup-api/)
+- [CNH FieldOps API](https://apis.io/collections/cnh/open-cnh-fieldops/)
+- [CNH FieldOps Equipment Operations API](https://apis.io/collections/cnh/open-cnh-operations-api/)
+- [CNH FieldOps Equipment Prescriptions API](https://apis.io/collections/cnh/open-cnh-prescriptions-api/)
+- [CNH FieldOps Equipment Tokens API](https://apis.io/collections/cnh/open-cnh-tokens-api/)
+- [CNH FieldOps Equipment Vehicle Telemetry API](https://apis.io/collections/cnh/open-cnh-vehicle-telemetry-api/)
+- [CNH FieldOps Equipment Webhooks API](https://apis.io/collections/cnh/open-cnh-webhooks-api/)
 
-- Developer Portal
-- Documentation
-- OAuth2
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Portal](https://develop.cnh.com/)
-- [Getting Started](https://develop.cnh.com/get-started)
-- [Postman Collection](collections/cnh-fieldops.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cnh-fieldops.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [CNH — jsonschema rules](https://apis.io/rules/cnh/cnh-jsonschema-spectral-rules/)
+- [CNH API Rules](https://apis.io/rules/cnh/cnh-rules/)
 
-## Common Properties
+#### Security (2)
 
-- [LinkedIn](https://www.linkedin.com/company/cnh)
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cnh Authentication](https://apis.io/security/cnh/cnh-authentication/)
+- [Cnh Domain Security](https://apis.io/security/cnh/cnh-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Cnh Scopes](https://apis.io/scopes/cnh/cnh-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cnh Plans Pricing](https://apis.io/plans/cnh/cnh-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cnh Rate Limits](https://apis.io/rate-limits/cnh/cnh-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cnh Finops](https://apis.io/finops/cnh/cnh-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.cnhindustrial.com/)
-- [Portal](https://develop.cnh.com/)
-- [Getting Started](https://develop.cnh.com/get-started)
 - [Documentation](https://develop.cnh.com/api-guides)
-- [OpenAPI](openapi/cnh-fieldops-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/cnh-equipment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cnh-telemetry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/cnh-context.jsonld)
-- [Spectral Ruleset](rules/cnh-rules.yml)
-- [Privacy Policy](https://www.cnhindustrial.com/en-us/privacy/pages/default.aspx)
+- [Getting started](https://develop.cnh.com/get-started)
+- [Privacy policy](https://www.cnhindustrial.com/en-us/privacy/pages/default.aspx)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 55.0 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 50.0 |
+| Access clarity | 18.4 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cnh/](https://apis.io/providers/cnh/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CNH: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cnh/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
